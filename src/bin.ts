@@ -92,7 +92,7 @@ async function doctor(jsonOutput: boolean, variant: WorkBuddyVariant): Promise<n
     : undefined
   const report = {
     schemaVersion: JSON_SCHEMA_VERSION,
-    package: 'dsh-workbuddy-connect',
+    package: '@cwentor/dsh-workbuddy-connect',
     version: WORKBUDDY_CONNECT_VERSION,
     node: process.version,
     provider: variant.id,
@@ -155,7 +155,7 @@ async function status(jsonOutput: boolean, variant: WorkBuddyVariant): Promise<n
   const hostState = hostAlive ? 'running' : heartbeat !== undefined ? 'stale' : 'not-started'
   if (authStatus.state !== 'signed-in') {
     if (jsonOutput) {
-      printJson({ schemaVersion: JSON_SCHEMA_VERSION, package: 'dsh-workbuddy-connect', version: WORKBUDDY_CONNECT_VERSION, provider: variant.id, status: 'signed-out', hostBundle: hostState })
+      printJson({ schemaVersion: JSON_SCHEMA_VERSION, package: '@cwentor/dsh-workbuddy-connect', version: WORKBUDDY_CONNECT_VERSION, provider: variant.id, status: 'signed-out', hostBundle: hostState })
     } else {
       process.stdout.write(`${variant.displayName} Connect: signed out\nHost bundle: ${hostState}\n`)
     }
@@ -178,7 +178,7 @@ async function status(jsonOutput: boolean, variant: WorkBuddyVariant): Promise<n
   if (jsonOutput) {
     printJson({
       schemaVersion: JSON_SCHEMA_VERSION,
-      package: 'dsh-workbuddy-connect',
+      package: '@cwentor/dsh-workbuddy-connect',
       version: WORKBUDDY_CONNECT_VERSION,
       provider: variant.id,
       status: 'signed-in',

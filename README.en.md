@@ -14,7 +14,7 @@ Brings the models available in your signed-in WorkBuddy / WorkBuddy AI desktop a
 **Recommended: let an Agent you already have do the install** — any assistant with terminal and file access (the DSH agent, Codex, Claude Code, Cursor, …). Paste this to it verbatim:
 
 ```text
-Please install and verify the DSH (DeepSeek Harness) plugin dsh-workbuddy-connect for me (project: https://github.com/corrinehu/dsh-workbuddy-connect).
+Please install and verify the DSH (DeepSeek Harness) plugin @cwentor/dsh-workbuddy-connect for me (project: https://github.com/Cwentor/dsh-workbuddy-connect).
 Start by reading the project README and confirming which interface I actually use (Web / Desktop / TUI) and its DSH core version — for the Desktop app, the bundled core, never the standalone CLI's version.
 Then install from the official npm package per the version mapping (0.2.1-rc.2 -> 0.8.0), preferring a locally supported non-market channel; on some Desktop distributions (the official Electron app in particular) the profile is app-managed and rules vary by distribution — check mine first, then explore its compliant install route, but never bypass its validation.
 Ask for my consent and make backups before changing any local files or configuration.
@@ -32,12 +32,12 @@ Core-to-plugin quick reference:
 <summary>Manual install (command line, Web / TUI only)</summary>
 
 ```sh
-# Web (this build supports the 0.2.1-rc.2 core; or install from source via github:corrinehu/dsh-workbuddy-connect)
-dsh plugin --profile web add dsh-workbuddy-connect@0.8.0
+# Web (this build supports the 0.2.1-rc.2 core; or install from source via github:Cwentor/dsh-workbuddy-connect)
+dsh plugin --profile web add @cwentor/dsh-workbuddy-connect@0.8.0
 dsh web
 
 # TUI (same 0.8.0; that profile needs pnpm 11, e.g. npx pnpm@11)
-dsh plugin --profile dsh-tui add dsh-workbuddy-connect@0.8.0
+dsh plugin --profile dsh-tui add @cwentor/dsh-workbuddy-connect@0.8.0
 dsh --profile dsh-tui
 ```
 
@@ -95,13 +95,13 @@ For models without declared levels, Web and Desktop instead use user-authorized,
 
 ## CLI
 
-`dsh plugin --profile <web|dsh-tui> exec dsh-workbuddy-connect status`: sign-in state and remaining credit (`--json` for machine-readable output; `doctor` for diagnostics and `logout` for credential cleanup are also available). The `desktop` profile is generally managed by the desktop app, so the CLI (including `exec`) does not work against it (see the Desktop note under Install).
+`dsh plugin --profile <web|dsh-tui> exec @cwentor/dsh-workbuddy-connect status`: sign-in state and remaining credit (`--json` for machine-readable output; `doctor` for diagnostics and `logout` for credential cleanup are also available). The `desktop` profile is generally managed by the desktop app, so the CLI (including `exec`) does not work against it (see the Desktop note under Install).
 
 Both commands target the CN version by default; add `--provider workbuddy-ai` for the international one:
 
 ```sh
-dsh plugin --profile web exec dsh-workbuddy-connect status --provider workbuddy-ai
-dsh plugin --profile web exec dsh-workbuddy-connect doctor --provider workbuddy-ai
+dsh plugin --profile web exec @cwentor/dsh-workbuddy-connect status --provider workbuddy-ai
+dsh plugin --profile web exec @cwentor/dsh-workbuddy-connect doctor --provider workbuddy-ai
 ```
 
 `logout` removes only that version's plugin-owned credential copy. It leaves the desktop app's own sign-in alone and does not promise the model group will disappear (the app's credential file still supplies one).
@@ -120,16 +120,16 @@ dsh plugin --profile web exec dsh-workbuddy-connect doctor --provider workbuddy-
 
 The plugin version must match the DSH core — a mismatched combination fails to start DSH — and the Desktop app picks its plugin version by the bundled core. This build supports the `0.2.1-rc.2` core only, which takes plugin `0.8.0`.
 
-Pinned-version install example: `dsh plugin --profile web add dsh-workbuddy-connect@0.8.0`.
+Pinned-version install example: `dsh plugin --profile web add @cwentor/dsh-workbuddy-connect@0.8.0`.
 
-**pi-ai must match the plugin's generation**: the plugin bundles `@earendil-works/pi-ai` 1.3.0; a profile-level leftover `overrides: {'@earendil-works/pi-ai': '0.87.1'}` **must be removed**, or the plugin loads the previous pi-ai generation and fails to start. Third-party plugin managers' "updatable" prompts do not check peer constraints — do not act on them ([#86](https://github.com/corrinehu/dsh-workbuddy-connect/issues/86)).
+**pi-ai must match the plugin's generation**: the plugin bundles `@earendil-works/pi-ai` 1.3.0; a profile-level leftover `overrides: {'@earendil-works/pi-ai': '0.87.1'}` **must be removed**, or the plugin loads the previous pi-ai generation and fails to start. Third-party plugin managers' "updatable" prompts do not check peer constraints — do not act on them ([#86](https://github.com/Cwentor/dsh-workbuddy-connect/issues/86)).
 
 ### 0.8.0 changes
 
 - Version bumped to 0.8.0; this repository now publishes independently. The README states that WorkBuddy AI (international) is no longer supported and drops the release notes and compatibility table for versions before 0.7.8, keeping only the current `0.2.1-rc.2` pairing.
 - Behaviour is unchanged from 0.7.8: targets DSH 0.2.1-rc.2, bundles the official atomic-write helper, distinguishes Hy3 / Hy3-X in the CN catalog, and keeps the 0.7.8 reasoning-probe display, credit-refresh button, and tooltip behaviour.
 
-Earlier releases are recorded in [releases](https://github.com/corrinehu/dsh-workbuddy-connect/releases).
+Earlier releases are recorded in [releases](https://github.com/Cwentor/dsh-workbuddy-connect/releases).
 
 ## Disclaimer
 

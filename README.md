@@ -14,7 +14,7 @@
 **推荐：把安装交给本机已有的 Agent**——任何具备终端与文件操作能力的助手（DSH Agent、Codex、Claude Code、Cursor 等）都可以，把下面这段话原样发给它：
 
 ```text
-请帮我安装并验证 DSH（DeepSeek Harness）插件 dsh-workbuddy-connect（项目地址：https://github.com/corrinehu/dsh-workbuddy-connect）：
+请帮我安装并验证 DSH（DeepSeek Harness）插件 @cwentor/dsh-workbuddy-connect（项目地址：https://github.com/Cwentor/dsh-workbuddy-connect）：
 先阅读项目 README，确认我实际使用的界面（Web / Desktop / TUI）与 DSH 内核版本，桌面版以 App 内置核心为准，不要用独立 CLI 的版本代替；
 再按版本对应关系从 npm 正式包安装（0.2.1-rc.2→0.8.0），优先走本机受支持的非插件市场渠道；部分 Desktop 发行版（尤其官方 Electron 版）的 profile 由 App 管理，各发行版规则未必相同，先确认我所用的发行版，再探查其合规的安装方式，但不得绕过其校验；
 任何本地文件或配置改动，先征得我同意并做好备份；
@@ -32,12 +32,12 @@
 <summary>手动安装（命令行，仅 Web / TUI）</summary>
 
 ```sh
-# Web（当前支持 0.2.1-rc.2 内核；也可用 github:corrinehu/dsh-workbuddy-connect 从源码安装）
-dsh plugin --profile web add dsh-workbuddy-connect@0.8.0
+# Web（当前支持 0.2.1-rc.2 内核；也可用 github:Cwentor/dsh-workbuddy-connect 从源码安装）
+dsh plugin --profile web add @cwentor/dsh-workbuddy-connect@0.8.0
 dsh web
 
 # TUI（同样用 0.8.0；该 profile 需用 pnpm 11 安装，如 npx pnpm@11）
-dsh plugin --profile dsh-tui add dsh-workbuddy-connect@0.8.0
+dsh plugin --profile dsh-tui add @cwentor/dsh-workbuddy-connect@0.8.0
 dsh --profile dsh-tui
 ```
 
@@ -96,13 +96,13 @@ WorkBuddy 中模型的推理档位信息目前分散在上游接口与客户端�
 
 ## 命令行
 
-`dsh plugin --profile <web|dsh-tui> exec dsh-workbuddy-connect status`：登录状态与剩余积分（`--json` 输出机器可读格式；另有 `doctor` 诊断、`logout` 清理凭据）。`desktop` profile 一般由桌面 App 管理，CLI（含 `exec`）对其不可用（见安装章节的 Desktop 说明）。
+`dsh plugin --profile <web|dsh-tui> exec @cwentor/dsh-workbuddy-connect status`：登录状态与剩余积分（`--json` 输出机器可读格式；另有 `doctor` 诊断、`logout` 清理凭据）。`desktop` profile 一般由桌面 App 管理，CLI（含 `exec`）对其不可用（见安装章节的 Desktop 说明）。
 
 默认操作国内版；加 `--provider workbuddy-ai` 操作国际版：
 
 ```sh
-dsh plugin --profile web exec dsh-workbuddy-connect status --provider workbuddy-ai
-dsh plugin --profile web exec dsh-workbuddy-connect doctor --provider workbuddy-ai
+dsh plugin --profile web exec @cwentor/dsh-workbuddy-connect status --provider workbuddy-ai
+dsh plugin --profile web exec @cwentor/dsh-workbuddy-connect doctor --provider workbuddy-ai
 ```
 
 `logout` 只删除该版插件自留的凭据副本，不动桌面 App 自己的登录，也不承诺一定让模型分组消失（App 的凭据文件仍在时依然生效）。
@@ -121,16 +121,16 @@ dsh plugin --profile web exec dsh-workbuddy-connect doctor --provider workbuddy-
 
 插件版本必须与 DSH 内核匹配，不匹配的组合会导致 DSH 启动失败；桌面版按 App 内置核心选择插件版本。当前只支持 `0.2.1-rc.2` 内核，对应插件 `0.8.0`。
 
-固定版本安装示例：`dsh plugin --profile web add dsh-workbuddy-connect@0.8.0`。
+固定版本安装示例：`dsh plugin --profile web add @cwentor/dsh-workbuddy-connect@0.8.0`。
 
-**pi-ai 必须与插件同代**：插件自带 `@earendil-works/pi-ai` 1.3.0；profile 级历史遗留的 `overrides: {'@earendil-works/pi-ai': '0.87.1'}` **必须移除**，否则插件会因加载到旧一代 pi-ai 而启动失败。第三方插件管理器的「可更新」提示不校验 peer 约束、不能照做（[#86](https://github.com/corrinehu/dsh-workbuddy-connect/issues/86)）。
+**pi-ai 必须与插件同代**：插件自带 `@earendil-works/pi-ai` 1.3.0；profile 级历史遗留的 `overrides: {'@earendil-works/pi-ai': '0.87.1'}` **必须移除**，否则插件会因加载到旧一代 pi-ai 而启动失败。第三方插件管理器的「可更新」提示不校验 peer 约束、不能照做（[#86](https://github.com/Cwentor/dsh-workbuddy-connect/issues/86)）。
 
 ### 0.8.0 更新
 
 - 版本号升至 0.8.0，本仓库自此独立发布；README 明确不再支持 WorkBuddy AI（国际版），并移除 0.7.8 之前的更新记录与版本兼容表，只保留当前内核 `0.2.1-rc.2` 的对应关系。
 - 插件行为与 0.7.8 一致：适配 DSH 0.2.1-rc.2；自带官方原子写入工具；国内模型目录区分 Hy3 / Hy3-X；推理检测结果展示、积分刷新按钮与悬停提示维持 0.7.8 的形态。
 
-更早版本的记录见 [releases](https://github.com/corrinehu/dsh-workbuddy-connect/releases)。
+更早版本的记录见 [releases](https://github.com/Cwentor/dsh-workbuddy-connect/releases)。
 
 ## 免责声明
 

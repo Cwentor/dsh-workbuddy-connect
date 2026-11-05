@@ -15,9 +15,11 @@
  * @module dsh-workbuddy-connect/update
  */
 
-export const WORKBUDDY_REPOSITORY_URL = 'https://github.com/corrinehu/dsh-workbuddy-connect'
-export const WORKBUDDY_UPDATE_PACKAGE_NAME = 'dsh-workbuddy-connect'
-export const WORKBUDDY_UPDATE_NPM_METADATA_URL = `https://registry.npmjs.org/-/package/${WORKBUDDY_UPDATE_PACKAGE_NAME}/dist-tags`
+export const WORKBUDDY_REPOSITORY_URL = 'https://github.com/Cwentor/dsh-workbuddy-connect'
+export const WORKBUDDY_UPDATE_PACKAGE_NAME = '@cwentor/dsh-workbuddy-connect'
+// Scoped names carry a `/`, which the registry's per-package metadata route
+// needs escaped; npm's own docs spell it `@scope%2Fname`.
+export const WORKBUDDY_UPDATE_NPM_METADATA_URL = `https://registry.npmjs.org/-/package/${WORKBUDDY_UPDATE_PACKAGE_NAME.replace('/', '%2F')}/dist-tags`
 export const WORKBUDDY_UPDATE_RELEASES_API_URL = `${WORKBUDDY_REPOSITORY_URL.replace('https://github.com', 'https://api.github.com/repos')}/releases?per_page=100`
 export const WORKBUDDY_RELEASE_PAGE_BASE = `${WORKBUDDY_REPOSITORY_URL}/releases/tag/`
 export const WORKBUDDY_UPDATE_TIMEOUT_MS = 8_000
