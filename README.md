@@ -142,8 +142,9 @@ dsh plugin --profile web exec dsh-workbuddy-connect doctor --provider workbuddy-
 
 - **[HanaAgent](https://github.com/liliMozi/openhanako)**：独立的个人 AI Agent 项目。
 - **[hana-workbuddy-connect](https://github.com/miaoyongxu/hana-workbuddy-connect)**：社区维护的非官方适配项目，复用 `dsh-workbuddy-connect` 的部分实现，为 HanaAgent 接入 WorkBuddy / WorkBuddy AI 模型。
+- **[workbuddy-auto-signin](https://github.com/88lin/workbuddy-auto-signin)**：自动领取 WorkBuddy 每日签到积分与成长中心奖励（旅行礼物、派 Buddy、盲盒、任务、连登兑换、断登补签）的 Python 脚本，只读取本机登录态、零内置密钥，可挂 Windows / macOS 定时任务静默运行，另可选领取 Qoder CN 每日 100 Credits。**想自动化签到、把积分稳定领满，推荐使用该项目**——本插件只负责把模型接入 DSH，不含任何签到功能。
 
-以上项目均由第三方独立维护。其中，`hana-workbuddy-connect` 的兼容性、安全性及使用支持由其维护者负责。收录不代表官方背书，也不意味着本插件对内部接口提供稳定性或兼容性承诺。
+以上项目均由第三方独立维护，`hana-workbuddy-connect` 与 `workbuddy-auto-signin` 的兼容性、安全性及使用支持由各自维护者负责。收录不代表官方背书，也不意味着本插件对内部接口提供稳定性或兼容性承诺。
 
 ## 致谢
 

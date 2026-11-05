@@ -141,8 +141,9 @@ Earlier releases are recorded in [releases](https://github.com/corrinehu/dsh-wor
 
 - **[HanaAgent](https://github.com/liliMozi/openhanako)**: an independent personal AI Agent project.
 - **[hana-workbuddy-connect](https://github.com/miaoyongxu/hana-workbuddy-connect)**: a community-maintained unofficial adapter project that reuses parts of the `dsh-workbuddy-connect` implementation to bring WorkBuddy / WorkBuddy AI models to HanaAgent.
+- **[workbuddy-auto-signin](https://github.com/88lin/workbuddy-auto-signin)**: a Python script that automatically claims the WorkBuddy daily check-in credit plus the growth-center rewards (travel gifts, dispatching Buddy, blind boxes, tasks, streak redemption, makeup check-in). It reads only the local sign-in state, embeds no keys, and can run silently from a Windows / macOS scheduled task; it can optionally claim Qoder CN's 100 daily credits as well. **If you want automated check-in and a reliably full credit balance, use that project** — this plugin only bridges models into DSH and does no check-in itself.
 
-Both projects are maintained independently by third parties. The compatibility, security, and usage support of `hana-workbuddy-connect` are the responsibility of its maintainer. Listing them here is not an official endorsement, nor does it imply any stability or compatibility commitment on this plugin's internal interfaces.
+All projects above are maintained independently by third parties; compatibility, security, and usage support for `hana-workbuddy-connect` and `workbuddy-auto-signin` rest with their own maintainers. Listing them here is not an official endorsement, nor does it imply any stability or compatibility commitment on this plugin's internal interfaces.
 
 ## Acknowledgements
 
