@@ -16,7 +16,7 @@ Brings the models available in your signed-in WorkBuddy / WorkBuddy AI desktop a
 ```text
 Please install and verify the DSH (DeepSeek Harness) plugin dsh-workbuddy-connect for me (project: https://github.com/corrinehu/dsh-workbuddy-connect).
 Start by reading the project README and confirming which interface I actually use (Web / Desktop / TUI) and its DSH core version — for the Desktop app, the bundled core, never the standalone CLI's version.
-Then install from the official npm package per the version mapping (0.2.1-rc.2 -> 0.7.8), preferring a locally supported non-market channel; on some Desktop distributions (the official Electron app in particular) the profile is app-managed and rules vary by distribution — check mine first, then explore its compliant install route, but never bypass its validation.
+Then install from the official npm package per the version mapping (0.2.1-rc.2 -> 0.8.0), preferring a locally supported non-market channel; on some Desktop distributions (the official Electron app in particular) the profile is app-managed and rules vary by distribution — check mine first, then explore its compliant install route, but never bypass its validation.
 Ask for my consent and make backups before changing any local files or configuration.
 After installing, verify the WorkBuddy group appears in the model picker and walk me through one short conversation.
 If the Desktop install still fails generation validation (e.g. the @types/retry false positive), report it honestly, reference upstream dataelement/dsh-desktop#688, and suggest switching to the standalone Web / TUI — do not modify dependency packages or bypass the check.
@@ -26,18 +26,18 @@ Core-to-plugin quick reference:
 
 | DSH core | Plugin |
 |---|---|
-| 0.2.1-rc.2 | 0.7.8 |
+| 0.2.1-rc.2 | 0.8.0 |
 
 <details>
 <summary>Manual install (command line, Web / TUI only)</summary>
 
 ```sh
 # Web (this build supports the 0.2.1-rc.2 core; or install from source via github:corrinehu/dsh-workbuddy-connect)
-dsh plugin --profile web add dsh-workbuddy-connect@0.7.8
+dsh plugin --profile web add dsh-workbuddy-connect@0.8.0
 dsh web
 
-# TUI (same 0.7.8; that profile needs pnpm 11, e.g. npx pnpm@11)
-dsh plugin --profile dsh-tui add dsh-workbuddy-connect@0.7.8
+# TUI (same 0.8.0; that profile needs pnpm 11, e.g. npx pnpm@11)
+dsh plugin --profile dsh-tui add dsh-workbuddy-connect@0.8.0
 dsh --profile dsh-tui
 ```
 
@@ -118,15 +118,16 @@ dsh plugin --profile web exec dsh-workbuddy-connect doctor --provider workbuddy-
 
 ## Compatibility
 
-The plugin version must match the DSH core — a mismatched combination fails to start DSH — and the Desktop app picks its plugin version by the bundled core. This build supports the `0.2.1-rc.2` core only, which takes plugin `0.7.8`.
+The plugin version must match the DSH core — a mismatched combination fails to start DSH — and the Desktop app picks its plugin version by the bundled core. This build supports the `0.2.1-rc.2` core only, which takes plugin `0.8.0`.
 
-Pinned-version install example: `dsh plugin --profile web add dsh-workbuddy-connect@0.7.8`.
+Pinned-version install example: `dsh plugin --profile web add dsh-workbuddy-connect@0.8.0`.
 
 **pi-ai must match the plugin's generation**: the plugin bundles `@earendil-works/pi-ai` 1.3.0; a profile-level leftover `overrides: {'@earendil-works/pi-ai': '0.87.1'}` **must be removed**, or the plugin loads the previous pi-ai generation and fails to start. Third-party plugin managers' "updatable" prompts do not check peer constraints — do not act on them ([#86](https://github.com/corrinehu/dsh-workbuddy-connect/issues/86)).
 
-### 0.7.8 changes
+### 0.8.0 changes
 
-- Adapts to DSH 0.2.1-rc.2; bundles the official atomic-write helper instead of relying on host module exposure; refreshes the CN model-catalog snapshot and distinguishes Hy3 / Hy3-X; improves the reasoning-probe result display, moves the credit-refresh button, and fixes its tooltip. Thanks to @chenpiyanghappy for PR [#156](https://github.com/corrinehu/dsh-workbuddy-connect/pull/156).
+- Version bumped to 0.8.0; this repository now publishes independently. The README states that WorkBuddy AI (international) is no longer supported and drops the release notes and compatibility table for versions before 0.7.8, keeping only the current `0.2.1-rc.2` pairing.
+- Behaviour is unchanged from 0.7.8: targets DSH 0.2.1-rc.2, bundles the official atomic-write helper, distinguishes Hy3 / Hy3-X in the CN catalog, and keeps the 0.7.8 reasoning-probe display, credit-refresh button, and tooltip behaviour.
 
 Earlier releases are recorded in [releases](https://github.com/corrinehu/dsh-workbuddy-connect/releases).
 
